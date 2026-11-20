@@ -1,0 +1,381 @@
+{
+  "version": "1.0.0",
+  "createdAt": "2026-11-19T07:28:54.979Z",
+  "browser": "157.0.8103.79",
+  "viewport": {
+    "width": 1240,
+    "height": 850
+  },
+  "hashes": {
+    "/atelier/blockout/hero-sword.glb": "00aefc3240aa88f4e0233082596fcb7f1e8f549e90613f9ff84b003ad5f8b98f",
+    "/atelier/models/hero-sword.glb": "f8b849c0a458121e0db3f81a36b4bcdd46e13547ee9fec5fad74d96e43d96736",
+    "/atelier/blockout/hero-guard.glb": "3e70a1078791941d873ac8c703bde9ce88c571cc177e12aef3d82c394da18fc8",
+    "/atelier/models/hero-guard.glb": "effc5a2cfc559a04277cf14c3b2d11b8969ca05dd6b97f62e3b102a527dd78ae",
+    "/atelier/blockout/hero-bow.glb": "98fafa5fef5ab4f21c56acad0e479630f33fd384c26103e2b254a7466a819a86",
+    "/atelier/models/hero-bow.glb": "d12b85b73bec737992adbdd8f994acc660e94974ff4f4181f6fc8d7d7b6a3406",
+    "/atelier/blockout/hero-priest.glb": "38481d91368b4ae1d01336083d2a58775b8dc614f49139a77a78842e5476e0bb",
+    "/atelier/models/hero-priest.glb": "a583ccc5e6bcddc140f5916430931e006da3bb2be8ff02ae6486a116f98cbee1",
+    "/atelier/blockout/house.glb": "ab3241a96bb7dadbff7aa2579b6fb03e8e59f035f089eec3ff5dee564f2dacc6",
+    "/atelier/models/house.glb": "81c0b43a6b3d44cf377d65c7e970155fb800057f4851f7db39921a96cd9a05d5",
+    "/atelier/blockout/tree.glb": "38c00152213047bf41a16a7427f5e0c08e97f18c6da85daa981a0ac9181b0c51",
+    "/atelier/models/tree.glb": "f554d6da30219ff8dcfb3509304d655ebe9d6b748dc7fcf748968729f55792a1",
+    "/atelier/blockout/bridge.glb": "2f6d70d4cf0b4dfce7d841a0a2e384df8cabb76801cf894e72d89cbcf4ef02dc",
+    "/atelier/models/bridge.glb": "dc2297924bf7c44d1f20e86e965be6eb252af764e7043f22a7cffc45d310d0ce",
+    "/atelier/blockout/rock.glb": "207554fd5c91a41b7b9251e6ddde5f57e1a9334923603dadcaae7826bb92b9d8",
+    "/atelier/models/rock.glb": "a83792db4d91e90a2ed7ddc265a323c4d3a28fb9e456a1efc44f3fec1fc1a179",
+    "/atelier/blockout/watchtower.glb": "87d36cc36eb4588f3449beda5ac1875854b7acbebb91de573d3407d6cd7c3edd",
+    "/atelier/models/watchtower.glb": "d7e464c81cb433dc5f5f958d53668e55364d5f83029c59e7cc59622de48663b8"
+  },
+  "shots": [
+    {
+      "id": "asset-hero-sword",
+      "title": "行旅剑士",
+      "filename": "asset-hero-sword.png",
+      "path": "/?lab=assets&asset=hero-sword&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "a27114ba85164c4d333c80f91d430e0576ad1fe74bc987dd665a04866a1d927c",
+      "asset": "hero-sword",
+      "triangles": 1516,
+      "materials": [
+        "blade",
+        "blue",
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "navy",
+        "skin",
+        "skin_light",
+        "steel",
+        "wood_light"
+      ],
+      "size": [
+        1.037,
+        1.781,
+        0.3987
+      ]
+    },
+    {
+      "id": "asset-hero-guard",
+      "title": "执盾护卫",
+      "filename": "asset-hero-guard.png",
+      "path": "/?lab=assets&asset=hero-guard&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "e1ded66a2d604c2bc4ec80e21a0a2ce6fc85cace42c697902b7b7c2f58e90eb8",
+      "asset": "hero-guard",
+      "triangles": 1676,
+      "materials": [
+        "blue_lite",
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "navy",
+        "skin",
+        "skin_light",
+        "steel",
+        "teal",
+        "wood_light"
+      ],
+      "size": [
+        1.097,
+        1.798,
+        0.6254
+      ]
+    },
+    {
+      "id": "asset-hero-bow",
+      "title": "山林弓手",
+      "filename": "asset-hero-bow.png",
+      "path": "/?lab=assets&asset=hero-bow&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "c5cc1b6fc5eba2fb6898a657edae44234bbc541ab105fe99d4a063c354304980",
+      "asset": "hero-bow",
+      "triangles": 1722,
+      "materials": [
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "moss",
+        "sage",
+        "skin",
+        "skin_light",
+        "wood_light"
+      ],
+      "size": [
+        1.0853,
+        1.779,
+        0.5869
+      ]
+    },
+    {
+      "id": "asset-hero-priest",
+      "title": "提灯牧师",
+      "filename": "asset-hero-priest.png",
+      "path": "/?lab=assets&asset=hero-priest&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "f27bd00b45e82eee1708bf58059350a0f0eaaeb446b5e64a95cd002cd8e9b84c",
+      "asset": "hero-priest",
+      "triangles": 1496,
+      "materials": [
+        "brass",
+        "cream",
+        "dark_leather",
+        "faction_cloth",
+        "gold",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "paper",
+        "skin",
+        "skin_light",
+        "teal",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        1.0998,
+        1.779,
+        0.4127
+      ]
+    },
+    {
+      "id": "asset-house",
+      "title": "山乡民居",
+      "filename": "asset-house.png",
+      "path": "/?lab=assets&asset=house&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "7024a1b76c24324c6679cde41ddb2b66812dcf62332fa548ec3f7df7489f3a36",
+      "asset": "house",
+      "triangles": 2432,
+      "materials": [
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "gold",
+        "lantern",
+        "limestone",
+        "roof_shadow",
+        "slate",
+        "stone",
+        "tile",
+        "tile_glaze",
+        "timber",
+        "whitewash",
+        "window",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        3.3244,
+        2.5549,
+        2.5496
+      ]
+    },
+    {
+      "id": "asset-tree",
+      "title": "山脊青松",
+      "filename": "asset-tree.png",
+      "path": "/?lab=assets&asset=tree&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "9a083ff6311a1f430fdddcd2eec8c8eac9afdeba0151dffaad59a3e0b0e1cf46",
+      "asset": "tree",
+      "triangles": 400,
+      "materials": [
+        "pine",
+        "pine_mid",
+        "pine_tip",
+        "timber",
+        "wood"
+      ],
+      "size": [
+        1.9502,
+        3.2713,
+        2.0101
+      ]
+    },
+    {
+      "id": "asset-bridge",
+      "title": "溪口木桥",
+      "filename": "asset-bridge.png",
+      "path": "/?lab=assets&asset=bridge&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "dbb3cb4e27e1538a5be3031eef685e69d8bc4ab250af0755d0ff6590d2981e65",
+      "asset": "bridge",
+      "triangles": 1380,
+      "materials": [
+        "limestone",
+        "stone",
+        "timber",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        3.644,
+        1.15,
+        1.52
+      ]
+    },
+    {
+      "id": "asset-rock",
+      "title": "溪畔石簇",
+      "filename": "asset-rock.png",
+      "path": "/?lab=assets&asset=rock&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "664f222b0074e745866f628c7bbebb91efe8be5a2bc714316498b19b94149019",
+      "asset": "rock",
+      "triangles": 400,
+      "materials": [
+        "limestone",
+        "moss",
+        "slate",
+        "stone"
+      ],
+      "size": [
+        1.6516,
+        0.927,
+        1.038
+      ]
+    },
+    {
+      "id": "asset-watchtower",
+      "title": "巡山望楼",
+      "filename": "asset-watchtower.png",
+      "path": "/?lab=assets&asset=watchtower&stage=compare&camera=quarter",
+      "width": 841,
+      "height": 434,
+      "sha256": "8791707dee799f96f29bec6b835ec54fd3ae463dbc6ffc3fca946804a2b0f3c1",
+      "asset": "watchtower",
+      "triangles": 740,
+      "materials": [
+        "faction_cloth",
+        "stone",
+        "tile",
+        "tile_glaze",
+        "timber",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        1.7748,
+        3.82,
+        1.6904
+      ]
+    },
+    {
+      "id": "mesh-house",
+      "title": "民居 · 侧面线框",
+      "filename": "mesh-house.png",
+      "path": "/?lab=assets&asset=house&stage=final&camera=side&wire=1",
+      "width": 841,
+      "height": 434,
+      "sha256": "1053a9aeeaa76f725317a009f00d9e0ffa6555a6e85fa543bf1c569132783731"
+    },
+    {
+      "id": "map-s01",
+      "title": "湘赣丘陵",
+      "filename": "map-s01.png",
+      "path": "/?lab=map&level=s01",
+      "width": 841,
+      "height": 754,
+      "sha256": "0dddb47364440e1bad45120c959f1f02bd24b307fa12969315240154092dd64b"
+    },
+    {
+      "id": "map-s03",
+      "title": "芦溪河岸",
+      "filename": "map-s03.png",
+      "path": "/?lab=map&level=s03",
+      "width": 841,
+      "height": 754,
+      "sha256": "6952d62e41bcbb3d1b86e9219dfa66b6e16f1ac2e43301fe4476a44558c6f72e"
+    },
+    {
+      "id": "map-s06",
+      "title": "茨坪山地",
+      "filename": "map-s06.png",
+      "path": "/?lab=map&level=s06",
+      "width": 841,
+      "height": 754,
+      "sha256": "5c3bbc79c847536f00d156f16634a270b632503afd50814be3e635d7824d1c0f"
+    },
+    {
+      "id": "battle-pierce-25",
+      "title": "穿透箭 · 25%",
+      "filename": "battle-pierce-25.png",
+      "path": "/?lab=battle&frame=3&pose=0.25",
+      "width": 841,
+      "height": 804,
+      "sha256": "ea1819f3ac86d5abc9bb2ecc3f31f11c9e36e41f2453f1b19b63956309210c56",
+      "frame": 3,
+      "pose": 0.25,
+      "actor": "a3",
+      "target": "e1",
+      "effect": "pierce",
+      "text": "希芙 → 苇地守卫 · 穿透箭 −25 HP"
+    },
+    {
+      "id": "battle-pierce-65",
+      "title": "穿透箭 · 65%",
+      "filename": "battle-pierce-65.png",
+      "path": "/?lab=battle&frame=3&pose=0.65",
+      "width": 841,
+      "height": 804,
+      "sha256": "758cbdff69c82a92d42de50e8394d62eb7174bb539cb178b696f9c06b7faff6c",
+      "frame": 3,
+      "pose": 0.65,
+      "actor": "a3",
+      "target": "e1",
+      "effect": "pierce",
+      "text": "希芙 → 苇地守卫 · 穿透箭 −25 HP"
+    },
+    {
+      "id": "battle-cover-55",
+      "title": "举盾掩护 · 55%",
+      "filename": "battle-cover-55.png",
+      "path": "/?lab=battle&frame=2&pose=0.55",
+      "width": 841,
+      "height": 804,
+      "sha256": "ac8a73a937e4b8872aa4912b124800e386827c44c0ebf022bc2f89377220f951",
+      "frame": 2,
+      "pose": 0.55,
+      "actor": "e1",
+      "target": "e3",
+      "effect": "cover",
+      "text": "苇地守卫 · 举盾掩护同列后排，减伤 45%"
+    },
+    {
+      "id": "battle-heal-65",
+      "title": "愈合术 · 65%",
+      "filename": "battle-heal-65.png",
+      "path": "/?lab=battle&frame=10&pose=0.65",
+      "width": 841,
+      "height": 804,
+      "sha256": "9aa8b408ec65235df5e9b2ce79f5351793cd7ee2f2cb74901c2b6b9e10687020",
+      "frame": 10,
+      "pose": 0.65,
+      "actor": "a4",
+      "target": "a2",
+      "effect": "heal",
+      "text": "艾拉 → 布兰 · 愈合术 +34 HP"
+    }
+  ]
+}

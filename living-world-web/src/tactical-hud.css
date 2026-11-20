@@ -1,0 +1,192 @@
+/* Battle and deployment share one bounded, camera-sized play surface. */
+.tactical-screen {
+  --edge:clamp(12px,2.1vw,30px);
+  --sheet:clamp(300px,30%,370px);
+  --top-safe:84px;
+  --bottom-safe:108px;
+  --glass:linear-gradient(125deg,rgba(26,36,29,.95),rgba(15,25,21,.92));
+  position:relative;isolation:isolate;overflow:hidden;width:100%;height:100svh;min-height:0;
+  color:#e9e8d5;background:radial-gradient(ellipse at center,#475743,#16271f 80%);
+  font-family:"Noto Sans SC",system-ui,sans-serif;
+}
+.game-frame .tactical-screen,.game-layer .tactical-screen{height:100%}
+.tactical-screen::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;box-shadow:inset 0 0 95px #12201965;background:linear-gradient(#14221c80,transparent 18%,transparent 82%,#12201875)}
+.tactical-ident,.tactical-status,.tactical-dock,.tactical-sheet{position:absolute;z-index:6}
+.tactical-ident{left:var(--edge);top:var(--edge);display:flex;align-items:center;gap:12px;max-width:29%;color:#fff5dc;text-shadow:0 2px 6px #132018}
+.tactical-ident small,.tactical-status>span,.formation-summary>span,.playback-track>span{font-size:11px;letter-spacing:.1em}
+.tactical-ident small{display:block;color:#f2d6a0}
+.tactical-ident h1{font:600 clamp(18px,2vw,30px)/1.3 "Songti SC",Georgia,serif;margin:3px 0 0;letter-spacing:.08em}
+.tactical-status{top:var(--edge);right:var(--edge);display:flex;align-items:baseline;gap:7px;text-shadow:0 2px 6px #132018;color:#f7efd7}
+.tactical-status>b{font:600 27px/1.25 Georgia,serif;color:#f2d28d}.tactical-status i{font:normal 12px/1.2 Georgia,serif}
+.tactical-screen button,.tactical-screen select{color:#e4e6d4;border-color:#84907763;background:#22332bee}
+.tactical-screen button:hover:not(:disabled),.tactical-screen button[aria-expanded=true],.tactical-screen button[aria-pressed=true]{background:#384634;border-color:#c5ae7c;color:#fff1cb}
+.tactical-screen .tactical-back,.tactical-sheet-head button{width:36px;height:36px;flex:0 0 auto;font-size:22px;line-height:1;padding:0;border-radius:50%;background:#1c2a24d9}
+.tactical-screen :is(button,select,input):focus-visible{outline:2px solid #ffe4a1;outline-offset:2px}
+.tactical-screen button:disabled{opacity:.45;cursor:default}
+.tactical-screen .bs-stage,.tactical-screen .bs-arena,.tactical-screen .tactical-board{position:absolute;inset:0;width:auto;height:auto;margin:0;border:0;border-radius:0}
+.tactical-screen .bs-arena{background:#213129}
+.tactical-screen .bs-grid-plane{position:absolute;inset:var(--top-safe) 2% var(--bottom-safe);container-type:size;z-index:1;}
+.tactical-screen .bs-arena-bottom{display:none}
+.tactical-screen .bs-action-banner{position:absolute;z-index:5;left:50%;top:var(--edge);transform:translateX(-50%);box-sizing:border-box;width:min(43%,520px);height:64px;min-height:0;padding:7px 16px;gap:8px;border:1px solid #b9a77a77;border-radius:3px;background:var(--glass);box-shadow:0 4px 20px #14201838}
+.tactical-screen .bs-phase-banner{gap:0}
+.tactical-screen .bs-phase-banner small,.tactical-screen .bs-phase-banner>span,.tactical-screen .bs-skill-arrow{display:none}
+.tactical-screen .bs-phase-banner strong{font:600 clamp(14px,1.6vw,21px)/1.35 "Songti SC",serif}
+.tactical-screen .bs-phase-banner .battle-message{display:block;padding:0;min-height:0;border:0;background:none;border-radius:0;color:#ffde9f}
+.tactical-screen .bs-banner-person{gap:1px;line-height:1.2}
+.tactical-screen .bs-banner-person>span,.tactical-screen .bs-banner-person>small{font-size:9px;letter-spacing:0}
+.tactical-screen .bs-banner-person>strong{font-size:15px;line-height:1.35;letter-spacing:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.tactical-screen .bs-banner-skill strong{display:block;font:600 clamp(15px,1.65vw,22px)/1.2 "Songti SC",serif;letter-spacing:.04em}
+.tactical-screen .bs-event-type{display:flex;justify-content:center;align-items:center;gap:4px;font-size:9px;line-height:1.1;letter-spacing:0;margin:0 0 4px}.tactical-screen .bs-event-type i{display:inline-block;width:auto;margin:0;padding:2px 3px;font-size:8px}
+.tactical-screen .bs-stage .bs-side-label{top:6px;font-size:11px;letter-spacing:.08em;gap:6px}.tactical-screen .bs-stage .bs-side-label b{font-size:9px}
+.tactical-screen .bs-stage .bs-rank-label{top:30px}
+.tactical-screen .bs-stage .bs-unit{--figure-height:clamp(32px,18cqh,136px);width:min(15cqw,20cqh,124px)}
+.tactical-screen .bs-stage .bs-character{height:var(--figure-height)}
+.tactical-screen .bs-unit-info{padding:4px 7px;border-radius:3px}
+.tactical-screen .bs-unit-info strong{margin:0 0 4px;font-size:11px}
+.tactical-screen .bs-job{display:none}.tactical-screen .bs-vitals{margin-top:3px;font-size:8px}
+.tactical-screen .bs-vitals small,.tactical-screen .bs-vitals>span:last-child{font-size:7px}
+.tactical-screen .bs-role-tag{font-size:9px;padding:2px 4px}
+.tactical-screen .bs-action-note{position:absolute;left:50%;bottom:calc(var(--bottom-safe) - 2px);transform:translateX(-50%);width:max-content;max-width:90%;min-height:0;padding:4px 10px;background:#17251de6;border:1px solid #b2b58643;border-radius:3px;color:#e0e7cf;font-size:10px;line-height:1.45;z-index:4;text-align:center}
+
+
+.tactical-dock{bottom:var(--edge);left:50%;transform:translateX(-50%);padding:10px 13px;max-width:calc(100% - 2 * var(--edge));box-shadow:0 8px 28px #07120b55;border:1px solid #b6ad846b;border-radius:5px;background:var(--glass)}
+.tactical-dock:before,.tactical-sheet:before{content:"";position:absolute;inset:0 19% auto;height:1px;background:linear-gradient(90deg,transparent,#dac18c,transparent);pointer-events:none}
+.tactical-dock :is(button,select){font:500 12px/1.3 system-ui,sans-serif;padding:6px 11px;min-height:34px;border-radius:3px;white-space:nowrap}
+.tactical-dock .hud-primary{color:#1b281d;background:#d1b883;border-color:#eed3a0;font-weight:700}
+.tactical-dock .hud-primary:hover:not(:disabled){background:#e3ce9e;color:#182319}
+.replay-dock{width:max-content;min-width:min(550px,90%)}
+.playback-track{display:flex;align-items:center;gap:10px;line-height:1.15;color:#d6dcbe}
+.playback-track>span{font-size:10px;white-space:nowrap}
+.playback-track .timeline{flex:1;min-width:0;width:auto;margin:0;height:14px}
+.playback-track output{font-variant-numeric:tabular-nums;font-size:10px;min-width:37px;text-align:right}
+.playback-buttons,.formation-actions{display:flex;align-items:center;justify-content:center;gap:6px}
+.playback-buttons{margin-top:6px}.playback-buttons .hud-icon{font:16px/1 system-ui;min-width:33px;padding:4px}
+.tactical-dock select{padding-inline:5px}
+.tactical-sheet{right:var(--edge);top:var(--top-safe);bottom:var(--bottom-safe);width:var(--sheet);max-width:calc(100% - 2 * var(--edge));display:flex;flex-direction:column;overflow:hidden;border-radius:5px;border:1px solid #b9ad826f;background:var(--glass);box-shadow:0 8px 32px #07120a70;z-index:8}
+.tactical-sheet-head{display:flex;flex:none;align-items:center;justify-content:space-between;gap:6px;padding:10px 14px;border-bottom:1px solid #8995744d}
+.tactical-sheet-head h2,.tactical-selected h3{font:600 19px/1.35 "Songti SC",Georgia,serif;letter-spacing:.05em;margin:0;color:#f3e8c9}
+.tactical-sheet-head button{width:29px;height:29px;font-size:17px}
+.tactical-sheet-body{overflow:auto;min-height:0;padding:12px 15px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#718163 transparent}
+.tactical-sheet .log{height:auto;overflow:visible;padding:0}
+.tactical-sheet .log button{background:transparent;border:0;border-bottom:1px solid #74816555;gap:8px;min-height:40px;font-size:12px;line-height:1.45}
+.tactical-sheet .log p{line-height:1.5;color:#d1d9c5}
+.tactical-sheet .log button.latest{border-left:2px solid #d7be88}
+.tactical-sheet .roster{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 10px}
+.tactical-sheet .roster button{font-size:18px;height:32px;min-width:27px;max-width:45px}
+.tactical-selected{display:flex;align-items:baseline;gap:10px}
+.tactical-selected>span{color:#c6cbb3;font-size:10px}
+.tactical-sheet .job-label{margin:10px 0;font-size:12px;color:#c5cdb9}
+.tactical-sheet .stats{margin:10px 0 14px}.tactical-sheet .stats span{gap:4px;color:#b1bea6}.tactical-sheet .stats b{font-size:15px}
+.tactical-sheet .rule{display:block;width:100%;margin:0 0 7px;padding:8px}
+.tactical-sheet .tactics-title strong,.tactical-sheet .rule select,.tactical-sheet .rule label,.tactical-sheet .passive p{font-size:11px}
+.tactical-sheet .rule label,.tactical-sheet .passive p{color:#b6c6af}
+.tactical-sheet .rule-head select{background:#213027}
+.tactical-sheet .editor-footer{margin-top:8px}
+.tactical-board{container-type:size;isolation:isolate;background:radial-gradient(ellipse at 40% 48%,#5c6d4c,#263d30 70%,#1b2a23)}
+.tactical-screen .formation>.bs-model-canvas{z-index:0}
+@media(min-width:841px){
+  .tactical-screen.has-sheet :is(.tactical-ranks,.tactical-slots){left:calc((100% - var(--sheet) - 2 * var(--edge)) / 2);width:min(550px,calc(100% - var(--sheet) - 4 * var(--edge)))}
+}
+.tactical-ranks,.tactical-slots{position:absolute;z-index:2;left:50%;transform:translateX(-50%);width:min(550px,75%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.tactical-ranks{top:var(--top-safe);color:#fff0c8;font-size:11px;text-align:center;letter-spacing:.25em;text-shadow:0 1px 5px #122419}
+.tactical-slots{inset-block:calc(var(--top-safe) + 22px) var(--bottom-safe);grid-template-rows:repeat(3,minmax(0,1fr));gap:5px 10%}
+.tactical-screen .tactical-slot{display:flex;align-items:center;justify-content:end;flex-direction:column;min-height:0;padding:1px 4px 4px;min-width:0;border:0;background:transparent;color:#f2ecd7;box-shadow:none;text-align:center}
+.tactical-screen .tactical-slot:hover:not(:disabled),.tactical-screen .tactical-slot[aria-pressed=true]{background:radial-gradient(ellipse at 50% 90%,#edce8223 12%,transparent 67%);border:0}
+.tactical-screen .tactical-slot:disabled{opacity:1}
+.tactical-screen .formation-avatar{position:relative;display:block;flex:0 1 auto;min-height:0;height:clamp(25px,14cqh,145px);width:min(100%,135px);pointer-events:none}
+.tactical-screen .formation-avatar svg{width:100%;height:100%}
+.tactical-nameplate{display:flex;align-items:baseline;justify-content:center;gap:7px;min-width:min(95px,100%);max-width:100%;padding:5px 8px;background:#17271fd9;border:1px solid #a4ad886a;border-radius:3px;color:#e9ecd9;line-height:1.2}
+.tactical-nameplate strong{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:13px;font-weight:600}
+.tactical-nameplate small{font-size:9px;color:#c4c9b4;white-space:nowrap}
+.tactical-slot.current .tactical-nameplate,.tactical-slot:focus-visible .tactical-nameplate{border-color:#ecd399;color:#ffdda1}
+.tactical-empty{font-size:10px;line-height:1.2;background:#2636286f;border:1px dashed #d2d3a670;border-radius:50%;padding:7px 14px;color:#dae0c6;min-width:72px}
+.tactical-empty b{font-size:15px;font-weight:400;display:block}
+.choosing-slot .tactical-slot{outline:1px dashed #f0d99d9c;outline-offset:-3px}
+.formation-dock{display:flex;align-items:center;gap:20px;width:max-content}
+.formation-summary{display:flex;flex-direction:column;gap:4px;padding-right:14px;border-right:1px solid #8e9c7d55;min-width:95px}
+.formation-summary b{font:600 16px/1.2 "Songti SC",serif;color:#f1e4bc}.formation-summary>span{font-size:10px;color:#b9c5ad;letter-spacing:0}
+@media (max-width:840px){
+  .tactical-ident{max-width:25%}
+  .tactical-screen .bs-vitals small{display:none}
+  .tactical-dock :is(button,select){padding-inline:8px}
+}
+@media (max-width:650px){
+  .tactical-screen{--edge:10px;--top-safe:122px;--bottom-safe:128px}
+  .tactical-screen.in-deployment{--top-safe:67px;--bottom-safe:106px}
+  .tactical-ident{max-width:70%;gap:7px}.tactical-ident>div{min-width:0}
+  .tactical-ident h1{font-size:17px;letter-spacing:.02em;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+  .tactical-ident small,.tactical-status>span{font-size:10px}.tactical-status>b{font-size:21px}.tactical-ident .tactical-back{width:31px;height:31px}
+  .tactical-screen .bs-action-banner{top:52px;width:calc(100% - 2 * var(--edge));max-width:470px;height:59px;padding:5px 10px}
+  .tactical-screen .bs-grid-plane{inset-inline:0}
+  .tactical-screen .bs-stage .bs-rank-label{font-size:8px;top:28px}
+  .tactical-screen .bs-stage .bs-unit{width:16cqw;--figure-height:clamp(28px,16cqh,91px)}
+  .tactical-screen .bs-vitals{display:none}.tactical-screen .bs-hp-track{height:3px}
+  .tactical-screen .bs-unit-info{padding:4px 3px}.tactical-screen .bs-unit-info strong{font-size:10px}
+  .tactical-screen .bs-role-tag{font-size:8px;letter-spacing:0;padding:2px 3px}
+  .tactical-dock{padding:7px 8px;border-radius:4px}
+  .replay-dock{min-width:0;width:calc(100% - 2 * var(--edge))}
+  .playback-buttons{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
+  .playback-buttons>button:nth-child(2){grid-column:span 4}
+  .playback-buttons>select,.playback-buttons>button:last-child{grid-column:span 2}
+  .playback-buttons>button:nth-child(5),.playback-buttons>button:nth-child(6){grid-column:span 3}
+  .playback-buttons>button:nth-child(n+5){background:#2a392e;padding-block:3px;min-height:27px}
+  .tactical-dock :is(button,select){min-height:31px;font-size:11px;padding:5px 7px}
+  .playback-buttons .hud-icon{min-width:30px}
+  .tactical-sheet{inset-inline:auto var(--edge);width:min(360px,calc(100% - 2 * var(--edge)));bottom:var(--bottom-safe)}
+  .tactical-screen .bs-action-note{font-size:9px}
+  .formation-dock{gap:6px;flex-direction:column;width:max-content;min-width:min(280px,94%)}
+  .formation-summary{flex-direction:row;align-items:baseline;border:0;gap:8px;padding:0;min-width:0}
+  .tactical-ranks,.tactical-slots{width:82%}
+}
+@media (max-height:570px) and (orientation:landscape){
+  .tactical-screen,.tactical-screen.in-deployment{--edge:7px;--top-safe:56px;--bottom-safe:69px}
+  .tactical-screen .tactical-ident{max-width:25%}
+  .tactical-screen .bs-action-banner{width:min(44%,520px)}
+  .replay-dock,.formation-dock{width:max-content;min-width:0}
+  .formation-dock{flex-direction:row}.formation-summary{flex-direction:column;gap:2px;align-items:start}
+  .playback-buttons{display:flex}.tactical-screen .playback-buttons>button:nth-child(n+5){min-height:24px}
+  .tactical-ident{gap:5px}.tactical-ident small,.tactical-status>span{font-size:9px}.tactical-ident h1{font-size:16px;margin:0}
+  .tactical-status>b{font-size:21px}
+  .tactical-screen .bs-action-banner{height:44px;padding:2px 8px;top:6px}
+  .tactical-screen .bs-banner-person>small{font-size:8px}.tactical-screen .bs-banner-person>strong{font-size:12px}
+  .tactical-screen .bs-banner-skill strong{font-size:14px}.tactical-screen .bs-event-type{margin-bottom:2px}
+  .tactical-dock{padding:4px 8px}.playback-buttons{margin-top:2px}.tactical-dock :is(button,select){min-height:24px;font-size:10px}
+  .tactical-screen .bs-stage .bs-side-label{top:0;font-size:9px}.tactical-screen .bs-stage .bs-side-label b{padding:1px 3px}
+  .tactical-screen .bs-stage .bs-rank-label,.tactical-screen .bs-vitals{display:none}
+  .tactical-screen .bs-stage .bs-unit{width:min(15cqw,22cqh,100px)}
+  .tactical-screen .bs-unit-info{padding:1px 4px}.tactical-screen .bs-unit-info strong{font-size:9px;margin-bottom:1px}
+  .tactical-screen .bs-role-tag,.tactical-screen .bs-action-note{font-size:8px}
+  .tactical-ranks{font-size:9px}.tactical-nameplate{padding:2px 5px}
+  .tactical-screen .formation-avatar{height:12cqh}
+}
+.tactical-strength{margin-bottom:8px;font-size:11px;color:#d2dbca}
+.tactical-strength summary{cursor:pointer;padding:7px 0;color:#e6d2a0}
+.tactical-strength table{width:100%;border-collapse:collapse;font-size:10px;font-variant-numeric:tabular-nums}
+.tactical-strength :is(th,td){padding:5px 3px;border-bottom:1px solid #78887145;text-align:right;font-weight:400}
+.tactical-strength th:first-child{text-align:left}.tactical-strength tbody th span{font-size:9px;color:#a8bba1}
+
+.tactical-live{position:absolute;inset:0}
+.tactical-overlay{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:clamp(9px,3%,34px);background:linear-gradient(100deg,#0917118c,#15251fa3);box-sizing:border-box}
+.tactical-report{width:min(460px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;box-sizing:border-box;padding:clamp(18px,3%,34px);border:1px solid #ab9c74;border-top:3px solid #d1bb86;border-radius:5px;box-shadow:0 14px 52px #05110c80;background:linear-gradient(135deg,#263b2fed,#17261ffb);color:#f3ebd1}
+.tactical-report[data-outcome=enemy]{border-top-color:#c88f79}
+.tactical-report .report-place{margin:0;color:#e1cfaa;font:500 12px/1.35 system-ui,sans-serif;letter-spacing:.08em}
+.report-place span{margin:0 5px;color:#8b987c}
+.tactical-report h2{margin:9px 0 16px;color:#f4dfaa;font:600 clamp(26px,3vw,40px)/1.3 "Songti SC","Noto Serif CJK SC",Georgia,serif;letter-spacing:.08em}
+.tactical-report[data-outcome=enemy] h2{color:#f0c4ac}
+.report-strength{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:12px 0;border-block:1px solid #c0b88845}
+.report-strength>div+div{border-left:1px solid #a6ac8c46;padding-left:14px}
+.report-strength dt{font-size:11px;color:#bdc8b5}.report-strength dd{margin:3px 0 0;color:#eee4c4;font:500 20px/1.15 Georgia,serif}
+.tactical-report .report-next{margin:15px 0;color:#e4e7d7;font-size:14px;line-height:1.65}
+.report-routes{display:flex;flex-wrap:wrap;gap:8px}
+.report-routes>button{flex:1 0 auto;min-height:40px;padding:7px 12px;font-size:14px;border-radius:3px}
+.tactical-report .hud-primary{background:#ddc38d;border-color:#edd5a6;color:#1a2c20;font-weight:700}
+.tactical-report .hud-primary:hover:not(:disabled){background:#f0d8a7;color:#1a291f;border-color:#f5e3be}
+.report-tools{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:13px}
+.report-tools>button{padding:5px 0;border:0;border-bottom:1px solid #aba67b70;border-radius:0;background:transparent;color:#d1d7bd;font-size:12px}
+.tactical-ident>div{min-width:0}.tactical-ident h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-height:450px) and (orientation:landscape){
+ .tactical-report{padding:11px 20px}.tactical-report h2{margin:3px 0 6px;font-size:25px}.report-strength{padding-block:5px}.report-strength dd{font-size:17px}
+ .tactical-report .report-next{margin:7px 0;font-size:12px}.report-routes>button{min-height:32px;font-size:12px}.report-tools{margin-top:4px}
+}
+/* Keep the final formation in view while the result replaces the playback HUD. */
+.showing-report .tactical-live :is(.tactical-ident,.tactical-status,.tactical-dock,.bs-action-banner,.bs-action-note,.bs-role-tag,.bs-side-label,.bs-rank-label){visibility:hidden}

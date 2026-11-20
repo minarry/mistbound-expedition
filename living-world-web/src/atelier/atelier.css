@@ -1,0 +1,46 @@
+.atelier{width:min(1500px,100%);margin:auto;min-height:100svh;padding:0 clamp(14px,4vw,66px) 42px;color:#e4e7d9;font:15px/1.5 "Noto Sans SC",system-ui,sans-serif}
+.atelier a{color:#dfc990;text-decoration:none}.atelier a:hover{text-decoration:underline}
+.atelier-mast{height:60px;padding:0;border-bottom:1px solid #415046;display:flex;align-items:center;gap:12px;font-size:13px}.atelier-mast span{margin-right:auto;color:#b9c7b9}.atelier-mast i{margin:0 7px;color:#5b7060}
+.atelier-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:30px 0 20px}.atelier-heading p,.atelier-board small{font-size:12px;color:#b4bea8;letter-spacing:.12em;margin:0}.atelier-heading h1{font:600 clamp(28px,4vw,48px)/1.22 "Songti SC","STSong",serif;margin:6px 0;color:#f5ead3}.atelier-heading nav{display:flex;gap:4px;flex-wrap:wrap}
+.atelier button{padding:7px 12px;font-size:13px}.atelier button[aria-current=page],.atelier button[aria-pressed=true]{background:#cdb989;color:#1b251e;border-color:#ddcba2}
+.atelier-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:18px;align-items:start}.atelier-board,.atelier-tools{border:1px solid #405047;background:#18251f;border-radius:7px;overflow:hidden}
+.atelier-board>header{height:auto;padding:16px 20px;border-bottom:1px solid #45554a}.atelier-board h2{font:600 25px/1.3 "Songti SC",serif;margin:3px 0 0}.atelier-board code{font-size:12px;color:#b8c3ad}.atelier-board>footer{height:auto;padding:12px 18px;color:#bac6b6;font-size:13px;border-top:1px solid #3b4e40}
+.atelier-viewport{position:relative;height:clamp(320px,51vh,560px);overflow:hidden;background:#172622;isolation:isolate}.atelier-viewport canvas{display:block;width:100%;height:100%;touch-action:none}.atelier-viewport.is-pair:after{content:'';position:absolute;inset:0 auto 0 50%;width:1px;background:#aec2ac55;pointer-events:none}.atelier-badges{position:absolute;display:flex;inset:12px 0 auto;pointer-events:none}.atelier-badges span{flex:1;padding-left:15px;color:#bdc5b2;font-size:12px}.atelier-hint{position:absolute;left:10%;right:10%;top:45%;text-align:center}
+.atelier-tools{padding:18px;display:flex;flex-flow:column;gap:16px;min-width:0}.atelier-tools>label,.atelier-segments legend,.atelier-tools h3{font-weight:600;color:#d1d9c9;font-size:13px;margin:0}.atelier-tools select,.atelier-tools input[type=range]{display:block;width:100%;margin-top:5px;accent-color:#d3b879}.atelier-tools output{float:right;color:#e5ca8d}
+.atelier-segments{border:0;padding:0;margin:0;min-width:0}.atelier-segments>div,.atelier-effects,.atelier-controls,.atelier-links{display:flex;gap:5px;flex-wrap:wrap}.atelier-segments legend{margin-bottom:6px}
+.atelier-controls{align-items:center;justify-content:space-between}.atelier-tools input[type=checkbox]{accent-color:#ceba8c}.atelier-tools p{margin:0;font-size:14px;color:#b6c4b5}.atelier-tools dl{border-block:1px solid #35473c;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;margin:0;padding:12px 0;font-size:12px}.atelier-tools dt{color:#a9baa9}.atelier-tools dd{text-align:right;margin:0;color:#d7ddcd}.atelier-links{gap:8px 14px;font-size:12px}.atelier-tools small{overflow-wrap:anywhere}.atelier-tools small:empty{display:none}
+.atelier-map .sh-map{margin:0;width:100%;max-width:none}.atelier-battle .battle-stage{width:100%;margin:0}.atelier-battle{background:#13201e}.atelier-map .sh-map-heading{height:auto}
+@media(max-width:850px){.atelier-layout{grid-template-columns:minmax(0,1fr)}.atelier-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.atelier-heading{align-items:start;flex-direction:column}.atelier-viewport{height:clamp(280px,55vw,440px)}}
+@media(max-width:520px){.atelier{padding:0 10px 25px}.atelier-mast span{display:none}.atelier-heading{margin:18px 0 12px}.atelier-tools{display:flex}.atelier-layout{gap:10px}.atelier-board>header{padding:10px 12px}.atelier-viewport{height:300px}.atelier-mast{height:44px}.atelier-heading nav{width:100%}}
+.game-frame .atelier { display:flex;flex-direction:column;height:100%;min-height:0;padding:0;max-width:none;width:100%;background:#15231d; }
+.atelier .atelier-bar { flex:none;height:auto;min-height:48px;padding:7px 16px;display:flex;align-items:center;justify-content:flex-start;gap:14px;border-bottom:1px solid #687354;background:#17271f; }
+.atelier-bar h1 { font:600 19px/1.3 "Songti SC",serif;margin:0;color:#efdfbc; }
+.atelier-bar nav { display:flex;align-items:center;gap:4px;margin-left:auto; }
+.atelier-bar>a { font-size:12px;white-space:nowrap; }.atelier-bar .atelier-toggle{border-color:#827e5f}
+.atelier .atelier-layout { flex:1;min-height:0;align-items:stretch;gap:0;grid-template-columns:minmax(0,1fr) minmax(225px,25%); }
+.atelier[data-tools=closed] .atelier-layout {grid-template-columns:minmax(0,1fr);}
+.atelier .atelier-tools[hidden] {display:none;}
+.atelier .atelier-board { border:0;border-radius:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0; }
+.atelier .atelier-board>header {padding:8px 16px; min-height:38px;}.atelier .atelier-board>header small{display:none}.atelier .atelier-board h2{font-size:18px;}
+.atelier .atelier-board>footer{font-size:12px;padding:7px 14px;line-height:1.35;}
+.atelier .atelier-viewport{height:100%;min-height:0;}
+.atelier .atelier-tools { border-width:0 0 0 1px;border-radius:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:11px;padding:13px; }
+.atelier .atelier-map,.atelier .atelier-battle { min-height:0; overflow:auto; overscroll-behavior:contain; }
+.atelier-map .sh-map-heading,.atelier-map .sh-map-note {display:none;}
+.atelier-map .sh-map{height:100%;display:flex;flex-direction:column;}
+.atelier-map .sh-map-scroll {min-height:0;flex:1;}.atelier-map .sh-map-canvas{aspect-ratio:auto;height:100%;min-height:0;max-height:none}
+.atelier-battle .bs-stage{min-height:100%;display:flex;flex-flow:column;}.atelier-battle .bs-arena{flex:1;min-height:310px;height:auto;}
+@media(max-width:760px) {
+ .atelier .atelier-bar{flex-wrap:wrap;gap:5px 10px;padding:7px 10px;min-height:42px}.atelier-bar h1{font-size:16px}.atelier-bar nav{order:1;width:100%;gap:5px}.atelier-bar nav button{flex:1}.atelier .atelier-bar button{padding:4px 8px}.atelier-toggle{margin-left:auto}
+ .atelier .atelier-layout,.atelier[data-tools=closed] .atelier-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);}
+ .atelier[data-tools=open] .atelier-layout{grid-template-rows:minmax(0,1fr) minmax(110px,36%);}
+ .atelier .atelier-tools{border-width:1px 0 0;}.atelier .atelier-board>header{padding:4px 10px; min-height:26px}.atelier .atelier-board h2{font-size:16px}.atelier .atelier-board>footer{padding:4px 10px;font-size:10px}
+}
+@media(max-height:480px) and (orientation:landscape) {
+ .atelier .atelier-bar{flex-wrap:nowrap}.atelier-bar nav{width:auto;order:0;}
+ .atelier[data-tools=open] .atelier-layout{grid-template-columns:minmax(0,1fr) minmax(210px,31%);grid-template-rows:minmax(0,1fr);}
+}
+.atelier-proof { position:absolute; inset:0; z-index:3; display:grid; grid-template-rows:auto minmax(0,1fr); background:#14201c; }
+.atelier-proof-bar {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px solid #6a735c;}
+.atelier-proof-bar h2 {font:600 18px "Songti SC",serif;margin:0;color:#ecdfbf;}
+.atelier-proof iframe {border:0;width:100%;height:100%;display:block;}

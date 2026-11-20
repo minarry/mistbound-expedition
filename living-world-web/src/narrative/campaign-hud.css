@@ -1,0 +1,140 @@
+/* The scene, command deck and secondary windows share the same game frame. */
+.sh-app,.sh-battle-wrapper { position:relative; width:100%; height:100%; min-height:0; overflow:hidden; }
+.sh-app { isolation:isolate; background:#182720; }
+.sh-field,.sh-map-field,.sh-reader-layer { position:absolute; inset:0; min-height:0; }
+.sh-field { container:chronicle / size; }
+.sh-map-field .sh-map,.sh-map-field .sh-map-scroll,.sh-map-field .sh-map-canvas {
+  width:100%; height:100%; min-width:0; max-height:none; aspect-ratio:auto; border:0; border-radius:0;
+}
+.sh-map-field .sh-map-scroll { overflow:clip; }
+.sh-map-field .sh-map-canvas { width:max(100%,152cqh); height:max(100%,65.79cqw); left:50%; top:50%; transform:translate(-50%,-50%); }
+.sh-map-field .sh-map :is(.sh-map-heading,.sh-map-note,.sh-map-legend) { display:none; }
+.sh-map-field:after { content:''; position:absolute; inset:0; pointer-events:none; z-index:3;
+  background:linear-gradient(180deg,#0b1816cb 0%,#10201b7c 8%,transparent 25%,transparent 69%,#14241cad 100%); }
+.sh-field-header { position:absolute; z-index:4; inset:0 0 auto; box-sizing:border-box; max-width:none; height:auto; min-height:0; border:none;
+  background:none; padding:clamp(12px,2.3cqh,24px) clamp(14px,2.6cqw,38px); gap:12px; pointer-events:none; }
+.sh-header-id,.sh-hud-actions,.sh-command-actions { display:flex; align-items:center; gap:10px; }
+.sh-field-header>* { pointer-events:auto; }
+.sh-header-id { min-width:0; color:#f8f0d4; text-shadow:0 2px 9px #10221e; gap:12px; }
+.sh-header-id>div { min-width:0; }
+.sh-header-id small,.sh-command-meta { display:block; font:600 11px/1.55 system-ui,sans-serif; letter-spacing:.09em; color:#e5d2a3; }
+.sh-header-id h1,.sh-chapter-pick select { font:600 clamp(22px,2.3cqw,33px)/1.25 'Songti SC',SimSun,serif; margin:3px 0 0; letter-spacing:.06em; color:#fff1d2; }
+.sh-header-id h1 { overflow-wrap:anywhere; }
+.sh-stamp { display:grid; place-content:center; width:37px; height:43px; flex-shrink:0; border:1px solid #dbcba5bd; color:#fff0c8;
+  font:600 17px/1.05 'Songti SC',serif; writing-mode:vertical-rl; letter-spacing:.14em; background:#713e32c7; }
+.sh-chapter-pick { display:flex; align-items:center; gap:7px; position:relative; }
+.sh-chapter-pick select { min-width:0; max-width:100%; padding:1px 22px 1px 0; appearance:none; border:0; background:transparent; cursor:pointer; }
+.sh-chapter-pick select option { color:#efdfc0; background:#23352d; font:14px system-ui; }
+.sh-chapter-pick>span { position:absolute; right:1px; pointer-events:none; color:#dfca9a; }
+.sh-hud-actions { margin-left:auto; flex-shrink:0; }
+.sh-back-atlas { flex-shrink:0; white-space:nowrap; }
+.sh-app .sh-hud-button,.sh-app .sh-quiet { min-height:38px; padding:7px 12px; color:#f0e5c8; background:#1b2c25ed; border:1px solid #a49e78a6; font-size:12px; }
+.sh-map-field .sh-map-node { width:max-content; max-width:170px; }
+.sh-map-field .sh-map-node-icon { width:37px; height:37px; font-size:17px; }
+.sh-map-field .sh-map-node-title { margin-top:5px; }
+.sh-map-field .sh-map-node-meta { margin-top:1px; }
+.sh-map-field .sh-map-locked { opacity:.86; }
+.sh-map-field .sh-map-locked .sh-map-node-title { color:#434c3c; }
+.sh-field .sh-warning { position:absolute; z-index:6; top:80px; left:15px; right:15px; }
+.sh-command-deck { position:absolute; z-index:4; inset:auto clamp(12px,2.6cqw,38px) clamp(12px,2.6cqh,28px); margin:0;
+  min-width:0; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:6px 20px; padding:clamp(12px,1.8cqh,21px) clamp(14px,2.1cqw,32px); color:#ede8d6;
+  background:linear-gradient(100deg,#15251ff5,#24362cf5); border:1px solid #ac9c6c9c; border-left:3px solid #c7a76a;
+  box-shadow:0 7px 26px #09171055; }
+.sh-command-copy { min-width:0; }
+.sh-command-copy h2 { font-size:clamp(19px,2.1cqw,28px); letter-spacing:.07em; line-height:1.32; margin:3px 0 4px; color:#f1e5c3; }
+.sh-command-copy p,.sh-dossier p { color:#c9d1bd; margin:0; font-size:13px; line-height:1.6; overflow-wrap:anywhere; }
+.sh-command-actions { flex-wrap:wrap; justify-content:flex-end; gap:7px; max-width:40cqw; }
+.sh-command-actions:has(.sh-choice) { max-width:45cqw; }
+.sh-app .sh-command-actions>button,.sh-app .sh-reader-nav button { min-height:38px; font-size:12px; line-height:1.4; padding:8px 13px; }
+.sh-choice { background:#394e3e; color:#f1e8cc; border:1px solid #9b9970; }
+.sh-ending { grid-column:1/-1; display:flex; gap:12px; align-items:center; color:#daca9b; border-top:1px solid #7e89654f; padding-top:6px; font-size:12px; flex-wrap:wrap; }
+.sh-ending .sh-link { margin-left:auto; }
+.sh-window-scrim { position:absolute; z-index:10; inset:0; display:grid; place-items:center; padding:clamp(8px,3vmin,30px); background:#0e1d1999; backdrop-filter:blur(4px); }
+.sh-hud-window { width:min(820px,100%); max-height:100%; min-height:0; display:flex; flex-direction:column; border:1px solid #948764; border-top:2px solid #ccb17c;
+  background:linear-gradient(125deg,#263b2f,#182c25); color:#e3e1cb; box-shadow:0 16px 64px #091a1690; }
+.sh-compact .sh-hud-window { width:min(380px,100%); }
+.sh-window-bar { display:flex; align-items:center; justify-content:space-between; flex-shrink:0; gap:15px; padding:12px 18px; border-bottom:1px solid #a6936e66; }
+.sh-window-bar h2 { font-size:20px; line-height:1.3; margin:0; color:#eadbc0; }
+.sh-window-scroll { min-height:0; overflow:auto; overscroll-behavior:contain; scrollbar-color:#6e785c #1d3026; }
+.sh-menu-info { display:flex; justify-content:space-between; padding:18px 18px 10px; font-size:12px; color:#c6bea1; }
+.sh-menu-grid { display:grid; grid-template-columns:1fr 1fr; padding:8px 18px 20px; gap:8px; }
+.sh-menu-grid button,.sh-reader-nav button { min-height:42px; background:#283c30; border:1px solid #647256; color:#e6dfc8; }
+.sh-menu-grid button:hover,.sh-reader-nav button[aria-pressed=true] { background:#40523c; border-color:#bda16c; }
+.sh-dossier { padding:18px 22px 24px; }
+.sh-dossier h3 { color:#ecdbad; font-size:25px; margin:5px 0 14px; }
+.sh-dossier h4 { color:#d9c290; margin:17px 0 5px; }
+.sh-dossier ul { padding-left:1em; list-style:none; font-size:13px; line-height:1.8; color:#c4ceba; }
+.sh-dossier .sh-command-actions { margin-top:16px; max-width:none; }
+.sh-reader-layer { z-index:10; }
+.sh-reader-layer .sh-hud-window { width:min(960px,100%); }
+.sh-reader-nav { display:flex; gap:6px; padding:10px 18px; flex-wrap:wrap; }
+.sh-window-scroll .sh-reader { max-width:none; padding:6px clamp(14px,3vw,36px) 22px; }
+.sh-reader h1 { font-size:clamp(20px,3vw,29px); margin:8px 0; }
+.sh-reader-heading,.sh-reader-heading>div { min-width:0; }
+.sh-window-scroll .sh-script-level { padding:clamp(12px,3vw,25px); }
+.sh-app .sh-dialogue-overlay { position:absolute; height:100%; min-height:0; overflow:hidden; }
+.sh-dialogue-heading { min-height:0; padding-top:clamp(8px,4vh,56px); }
+.sh-dialogue-heading>p { max-width:650px; }
+.sh-dialogue-card { min-height:0; margin-bottom:clamp(12px,3vh,42px); max-height:65%; }
+.sh-dialogue-copy { display:flex; flex-direction:column; min-height:0; align-self:stretch; }
+.sh-dialogue-copy>p { min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+.sh-dialogue-controls { flex-shrink:0; }
+.sh-dialogue-top { flex-shrink:0; }
+.sh-dialogue-nav { display:flex; flex-shrink:0; gap:6px; }
+.sh-dialogue-card .sh-portrait-large { flex-shrink:0; }
+@container chronicle (max-width:850px) {
+  .sh-field-header { gap:8px; }
+  .sh-hud-actions { gap:5px; }
+  .sh-command-actions { max-width:42cqw; }
+  .sh-map-field .sh-map-node { max-width:115px; }
+  .sh-map-field .sh-map-node-meta { display:none; }
+  .sh-map-field .sh-map-node-icon { width:32px; height:32px; }
+  .sh-command-deck { gap:8px; }
+}
+@container chronicle (max-width:620px) {
+  .sh-command-deck { grid-template-columns:1fr; inset-inline:8px; bottom:8px; padding:11px 12px; }
+  .sh-command-copy h2 { font-size:20px; margin:2px 0; }
+  .sh-command-copy p { font-size:12px; line-height:1.45; }
+  .sh-command-actions,.sh-command-actions:has(.sh-choice) { justify-content:flex-start; max-width:100%; }
+  .sh-command-actions>button { flex:1 1 auto; }
+  .sh-header-id { gap:6px; }
+  .sh-field-header:has(.sh-back-atlas) { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:3px 8px; }
+  .sh-header-id:has(.sh-back-atlas),.sh-header-id:has(.sh-back-atlas)>div { display:contents; }
+  .sh-back-atlas { grid-area:1 / 1; }
+  .sh-header-id:has(.sh-back-atlas) small { grid-area:1 / 2; }
+  .sh-header-id:has(.sh-back-atlas) h1 { grid-area:2 / 1 / auto / -1; }
+  .sh-field-header:has(.sh-back-atlas) .sh-hud-actions { grid-area:1 / 3; }
+  .sh-stamp { display:none; }
+  .sh-header-id h1,.sh-chapter-pick select { font-size:19px; }
+  .sh-header-id small,.sh-command-meta { font-size:10px; letter-spacing:.03em; }
+  .sh-app .sh-hud-button { padding:6px 9px; }
+  .sh-map-field .sh-map-node { max-width:80px; }
+  .sh-map-field .sh-map-node-title { padding:3px 4px; margin-top:3px; max-width:80px; font-size:11px; }
+  .sh-map-field .sh-map-level .sh-map-node-title { font-size:11px; }
+  .sh-map-field .sh-map-node-meta { display:none; }
+  .sh-map-field .sh-map-place { font-size:22px; letter-spacing:1px; }
+  .sh-ending { gap:4px 8px; }.sh-ending span { display:none; }
+}
+@container chronicle (max-height:490px) {
+  .sh-field-header { padding:6px 12px; }
+  .sh-header-id h1,.sh-chapter-pick select { font-size:18px; }
+  .sh-stamp { height:32px; font-size:13px; }
+  .sh-map-field .sh-map-node-icon { width:27px; height:27px; font-size:14px; }
+  .sh-map-field .sh-map-node-title { margin-top:2px; font-size:10px; padding:2px 4px; }
+  .sh-map-field .sh-map-node-meta { display:none; }
+  .sh-command-deck { padding:7px 10px; bottom:5px; inset-inline:8px; gap:5px; }
+  .sh-command-copy h2 { font-size:16px; margin:0; }
+  .sh-command-copy p { font-size:11px; line-height:1.35; }
+  .sh-app .sh-command-actions>button { min-height:32px; padding:4px 7px; font-size:11px; }
+}
+@media(max-height:520px) {
+  .sh-app .sh-dialogue-top { padding:7px 3%; }
+  .sh-app .sh-dialogue-heading { padding:0 5%; min-height:0; }
+  .sh-app .sh-dialogue-heading h2 { font-size:21px; margin:3px 0; }
+  .sh-app .sh-dialogue-heading>p { display:none; }
+  .sh-app .sh-dialogue-card { padding:10px 16px; margin:4px auto 8px; max-height:65%; display:flex; }
+  .sh-app .sh-dialogue-copy>p { font-size:14px; line-height:1.5; margin:6px 0; min-height:0; }
+  .sh-app .sh-dialogue-controls { padding-top:4px; }
+  .sh-app .sh-dialogue-controls button { min-height:30px; padding:4px 8px; }
+  .sh-app .sh-portrait-large { display:none; }
+}

@@ -1,0 +1,13 @@
+# Godot-generated files
+.godot/
+*.tmp
+*.log
+
+# Local development saves and exports
+.local/
+builds/
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/

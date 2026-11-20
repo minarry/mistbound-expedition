@@ -1,0 +1,183 @@
+/* Map, markers and orders share the same local coordinate space and clipping frame. */
+.world-screen.world-map-panel {
+  --map-ink:#13271f;
+  --map-gold:#dcc28b;
+  --map-light:#f3ead6;
+  --map-margin:clamp(14px,2.5%,36px);
+  margin:0; padding:0; max-width:none; width:100%; height:100%;
+  min-height:0; overflow:hidden; isolation:isolate; position:relative; container-type:size;
+  background:#283b2d; color:var(--map-light);
+}
+.world-screen button { font:inherit; cursor:pointer; }
+.world-screen button:disabled { cursor:not-allowed; }
+.world-screen :is(button,summary):focus-visible { outline:2px solid #fff0af; outline-offset:3px; }
+.world-cartography { position:absolute; inset:0; overflow:hidden; }
+.world-model-field { position:absolute; left:50%; top:50%; width:var(--terrain-width); height:var(--terrain-height); transform:translate(-50%,-50%); pointer-events:none; }
+.world-route-plane { position:absolute; inset:var(--route-top) 0 var(--route-bottom); pointer-events:none; }
+.world-route-plane button { pointer-events:auto; }
+.world-map-svg { position:absolute; inset:0; width:100%; height:100%; display:block; }
+.world-screen::after {
+  content:""; pointer-events:none; position:absolute; inset:0; z-index:3;
+  background:linear-gradient(180deg,#0b1d18bf 0,transparent 21%,transparent 71%,#0b1d18a8 100%);
+  box-shadow:inset 0 0 48px #12251b30;
+}
+.world-topbar {
+  position:absolute; z-index:5; inset:var(--map-margin) var(--map-margin) auto;
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px; pointer-events:none;
+}
+.world-topbar button,.world-dock button,.world-intel { pointer-events:auto; }
+.world-heading-group { min-width:0; display:flex; gap:14px; align-items:center; }
+.world-screen .world-back,.world-screen .world-formation {
+  color:#f1e6c8; background:#14261fe8; border:1px solid #cfbc864d; border-radius:3px;
+  box-shadow:0 2px 10px #14201930; flex:none;
+}
+.world-back { min-width:44px; height:40px; padding:0 10px; display:flex; align-items:center; gap:5px; font-size:12px!important; }
+.world-back>span { font:22px/1 Georgia,serif; }
+.world-formation { min-height:40px; padding:7px 13px; font-size:12px!important; display:flex; align-items:center; gap:7px; }
+.world-formation>span { color:var(--map-gold); font-size:20px; line-height:1; }
+.world-screen .world-back:hover:enabled,.world-screen .world-formation:hover:enabled { background:#31483a; border-color:var(--map-gold); }
+.world-top-title { min-width:0; text-shadow:0 1px 8px #081b12e3; }
+.world-top-title small { display:block; color:#e0d5af; font:600 10px/1.4 system-ui,sans-serif; letter-spacing:1.7px; }
+.world-top-title h1 { font:600 clamp(20px,2.5cqw,34px)/1.23 Georgia,"Songti SC",serif; letter-spacing:.08em; margin:4px 0 0; color:#fff6df; }
+.world-top-title h1,.world-top-title small { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.world-compass { position:absolute; top:calc(var(--map-margin) + 59px); right:var(--map-margin); width:40px; color:#f0e6bd; text-shadow:0 1px 4px #1d3329; z-index:4; text-align:center; pointer-events:none; }
+.world-compass>span { font:10px/1 Georgia,serif; display:block; }
+.world-compass svg { display:block; width:100%; fill:none; stroke:#f7e8bc; stroke-width:1.3; filter:drop-shadow(0 1px 2px #233523); }
+.world-compass .world-compass-fill { fill:#e5d3a5; }
+
+.world-node,.local-map-point {
+  position:absolute; z-index:2; transform:translate(-50%,-50%); width:44px; height:44px;
+  display:grid; place-items:center; white-space:nowrap; padding:0; text-align:center;
+}
+.world-screen .world-node,.world-screen button.local-map-point { border:0; border-radius:50%; background:transparent; opacity:1; }
+.world-screen .world-node:hover,.world-screen button.local-map-point:hover { background:transparent; }
+.world-node-ring,.local-map-point>span {
+  width:32px; height:32px; display:grid; place-items:center;
+  border-radius:50%; border:1px solid #e9d6a6; background:#273f33ef; color:#ede0ba;
+  box-shadow:0 0 0 3px #24342761,0 2px 8px #14261f5c;
+  font:normal 20px/1 Georgia,"Songti SC",serif; transition:transform .15s ease,background .15s ease;
+}
+.world-node-selected .world-node-ring,.local-point-selected>span {
+  background:#ecd9a5; color:#233b2c; border-color:#fff0cd; box-shadow:0 0 0 3px #294333,0 0 0 4px #f6df9e,0 2px 10px #1d281b99;
+}
+.world-node-locked:not(.world-node-selected) .world-node-ring { background:#425142eb; color:#d4cbb1; border-style:dashed; }
+.world-node:hover:enabled .world-node-ring,.local-route-point:hover:enabled>span { transform:scale(1.1); }
+.local-point-visited>span { border-color:#d6c18a; color:#fff0be; }
+.local-enemy-point>span { background:#754d3b; border-color:#f1c5a1; color:#fff0ce; }
+.world-screen .local-route-point:disabled:not(.local-point-selected) { opacity:.7; }
+.world-cartography .world-node-label,.world-cartography .local-map-point>strong {
+  position:absolute; top:42px; left:50%; transform:translateX(-50%); max-width:clamp(70px,18cqw,170px);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none;
+  color:#f6e9ca; border:1px solid #dcc48b52; border-radius:2px; padding:3px 8px;
+  background:#243a2eea; font:600 13px/1.15 Georgia,"Songti SC",serif; letter-spacing:.05em;
+}
+.world-node-label strong { display:block; overflow:hidden; text-overflow:ellipsis; font:inherit; }
+.world-node-selected .world-node-label,.local-point-selected>strong { color:#fbe5a9; border-color:#d4b779; }
+.world-party-flag {
+  z-index:2; position:absolute; width:25px; height:38px; transform:translate(-14px,-51px);
+  transition:left 1.65s ease-in-out,top 1.65s ease-in-out; pointer-events:none;
+}
+.world-flag-pole { position:absolute; width:2px; height:34px; left:8px; top:4px; background:#55462e; }
+.world-flag-cloth { position:absolute; left:10px; top:4px; width:20px; height:17px; display:grid; place-items:center; font-size:15px; color:#fff0b2; background:#775d35; clip-path:polygon(0 0,100% 0,80% 50%,100% 100%,0 100%); }
+.world-travelling .world-flag-cloth { animation:world-wave .4s ease-in-out infinite alternate; }
+@keyframes world-wave { from{transform:skewY(-6deg)} to{transform:skewY(6deg)} }
+
+.world-dock {
+  position:absolute; z-index:6; left:var(--map-margin); right:var(--map-margin); bottom:var(--map-margin);
+  margin:auto; max-width:770px; pointer-events:none; color:#f0e4c8;
+}
+.world-map-footer {
+  display:flex; justify-content:space-between; gap:12px; padding:0 3px 8px;
+  line-height:1.35; font-size:11px; letter-spacing:.03em; color:#fff0c9; text-shadow:0 1px 4px #11271bea,0 0 3px #192b1d;
+}
+.world-map-footer>span { display:flex; align-items:center; gap:7px; min-width:0; }
+.world-map-footer>span:first-child b { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-weight:600; }
+.world-map-footer i { width:6px; height:6px; flex:none; border-radius:50%; background:#e5c478; box-shadow:0 0 0 2px #283e2c; }
+.world-progress-caption { flex:none; }
+.world-progress-caption strong { font:600 11px/1.2 ui-monospace,monospace; }
+.world-order {
+  display:flex; gap:22px; align-items:center; justify-content:space-between; padding:14px 18px; min-width:0;
+  background:linear-gradient(105deg,#192f25f5,#1f3127fa); color:#ece5d1;
+  border:1px solid #d8c89a6e; border-left:3px solid #c2a46c; border-radius:4px; box-shadow:0 7px 25px #091a145e;
+}
+.world-order-info,.world-order-title h2 { min-width:0; }
+.world-order-info { flex:1; }
+.world-order-title { display:flex; align-items:center; gap:10px; }
+.world-order-title h2 { margin:0; font:600 clamp(18px,2.1cqw,26px)/1.3 Georgia,"Songti SC",serif; letter-spacing:.05em; color:#f5ead0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.world-order-title>span { flex:none; font-size:10px; color:#ddc58e; }
+.world-order-info>p { font-size:12px; color:#d3d5c1; margin:5px 0 0; overflow-wrap:anywhere; line-height:1.4; }
+.world-order-actions { display:flex; align-items:center; gap:16px; flex:none; }
+.world-screen .world-primary {
+  min-height:43px; max-width:min(37cqw,225px); display:flex; align-items:center; justify-content:center; gap:10px; padding:9px 17px;
+  font-size:13px; font-weight:650; line-height:1.35; background:#e0c895; border:1px solid #e7d5a9;
+  border-radius:3px; color:#24382b; text-align:center; overflow-wrap:anywhere;
+}
+.world-screen .world-primary:hover:enabled { background:#f1dbab; border-color:#f4e0b3; }
+.world-screen .world-primary:disabled { background:#354438; color:#b5b59b; border-color:#7d806669; opacity:1; }
+.world-primary>span { color:inherit; flex:none; }
+.world-primary>.world-command-label { min-width:0; flex:0 1 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.world-screen .world-secondary { min-height:36px; padding:6px 10px; color:#e2d3ae; border:1px solid #a29d7582; border-radius:3px; background:#253b30; font-size:12px; white-space:nowrap; }
+.world-intel summary {
+  cursor:pointer; color:#ded2af; font-size:12px; list-style:none; white-space:nowrap; padding:9px 0;
+}
+.world-intel summary::-webkit-details-marker { display:none; }
+.world-intel summary>span { display:inline-block; color:#afaa83; }
+.world-intel[open] summary>span { transform:rotate(180deg); }
+.world-intel-sheet {
+  position:absolute; right:0; bottom:calc(100% + 7px); width:min(320px,100%);
+  padding:16px; border:1px solid #948d6d; border-radius:4px; background:#182a22fc;
+  box-shadow:0 8px 16px #0a1c1259; max-height:45cqh; overflow:auto; overscroll-behavior:contain;
+}
+.world-intel-sheet p { margin:0; color:#d0d2bd; font-size:13px; line-height:1.6; overflow-wrap:anywhere; }
+.world-intel-sheet h3 { margin:12px 0 8px; padding-top:10px; border-top:1px solid #7e876046; color:#d7c390; font:600 14px Georgia,serif; }
+.world-intel-sheet h3 span { font:10px sans-serif; margin-left:5px; color:#aeb79d; }
+.world-intel-sheet ul { display:grid; grid-template-columns:1fr 1fr; gap:5px 12px; margin:0; padding:0; list-style:none; }
+.world-intel-sheet li { display:flex; gap:5px; align-items:center; min-width:0; font-size:12px; }
+.world-intel-sheet li>span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.world-intel-sheet li b { color:#d7ba7c; } .world-intel-sheet li small { margin-left:auto; flex:none; color:#abb398; font-size:10px; }
+
+@container (max-width:650px) {
+  .world-order { gap:10px; padding:11px 12px; }
+  .world-order-actions { gap:9px; }
+  .world-intel summary { font-size:11px; }
+  .world-topbar { gap:8px; }
+  .world-heading-group { gap:9px; }
+  .world-formation { padding:6px 10px; }
+  .world-top-title small { font-size:9px; letter-spacing:.08em; max-width:49cqw; }
+  .world-order-title { gap:6px; }
+}
+@container (max-aspect-ratio: 4/5) {
+  .world-topbar { top:20px; }
+  .world-compass { top:76px; width:33px; }
+  .world-dock { bottom:20px; }
+  .world-order { display:grid; grid-template-columns:1fr; gap:8px; }
+  .world-order-title h2 { font-size:23px; }
+  .world-order-info>p { white-space:normal; }
+  .world-order-actions { justify-content:space-between; }
+  .world-screen .world-primary { min-height:42px; max-width:70%; }
+  .world-node-label,.local-map-point>strong { max-width:76px!important; }
+  .world-cartography .world-node-label,.world-cartography .local-map-point>strong { top:40px; font-size:12px; padding:3px 5px; }
+}
+@container (max-height:560px) {
+  .world-top-title h1 { font-size:20px; }
+  .world-compass { display:none; }
+  .world-order { padding:8px 13px; }
+  .world-order-info>p { font-size:11px; margin-top:2px; }
+  .world-map-footer { padding-bottom:4px; }
+  .world-node-ring,.local-map-point>span { width:27px; height:27px; font-size:17px; }
+  .world-cartography .world-node-label,.world-cartography .local-map-point>strong { top:38px; font-size:11px; }
+  .world-dock { bottom:10px; }
+  .world-topbar { top:10px; }
+  .world-top-title { display:flex; align-items:center; gap:9px; }
+  .world-top-title small { order:1; }
+  .world-order-title h2 { font-size:18px; }
+}
+@container (max-height:400px) {
+  .world-screen .world-primary,.world-screen .world-formation,.world-screen .world-back { min-height:34px; height:34px; }
+  .world-order-info>p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; font-size:10px; }
+  .world-map-footer { font-size:10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .world-party-flag { transition:none; }
+  .world-travelling .world-flag-cloth { animation:none; }
+}

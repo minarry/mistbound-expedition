@@ -1,0 +1,252 @@
+{
+  "version": "1.0.0",
+  "source": "/atelier/source/field-kit.blend",
+  "script": "/atelier/source/build_field_kit.py",
+  "authoring": {
+    "application": "Mixar",
+    "version": "4.4.7",
+    "exporter": "Shanhe Field Kit / glTF 2.0",
+    "sceneEngine": "BLENDER_EEVEE"
+  },
+  "axes": "glTF Y up, +Z front. Dimensions [width, height, depth] in metres.",
+  "assets": [
+    {
+      "id": "hero-sword",
+      "label": "行旅剑士",
+      "category": "角色",
+      "model": "/atelier/models/hero-sword.glb",
+      "blockout": "/atelier/blockout/hero-sword.glb",
+      "triangles": 1516,
+      "blockoutTriangles": 920,
+      "materials": [
+        "blade",
+        "blue",
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "navy",
+        "skin",
+        "skin_light",
+        "steel",
+        "wood_light"
+      ],
+      "size": [
+        1.037,
+        1.785,
+        0.3987
+      ]
+    },
+    {
+      "id": "hero-guard",
+      "label": "执盾护卫",
+      "category": "角色",
+      "model": "/atelier/models/hero-guard.glb",
+      "blockout": "/atelier/blockout/hero-guard.glb",
+      "triangles": 1676,
+      "blockoutTriangles": 828,
+      "materials": [
+        "blue_lite",
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "navy",
+        "skin",
+        "skin_light",
+        "steel",
+        "teal",
+        "wood_light"
+      ],
+      "size": [
+        1.097,
+        1.802,
+        0.6254
+      ]
+    },
+    {
+      "id": "hero-bow",
+      "label": "山林弓手",
+      "category": "角色",
+      "model": "/atelier/models/hero-bow.glb",
+      "blockout": "/atelier/blockout/hero-bow.glb",
+      "triangles": 1722,
+      "blockoutTriangles": 960,
+      "materials": [
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "moss",
+        "sage",
+        "skin",
+        "skin_light",
+        "wood_light"
+      ],
+      "size": [
+        0.987,
+        1.783,
+        0.5391
+      ]
+    },
+    {
+      "id": "hero-priest",
+      "label": "提灯牧师",
+      "category": "角色",
+      "model": "/atelier/models/hero-priest.glb",
+      "blockout": "/atelier/blockout/hero-priest.glb",
+      "triangles": 1496,
+      "blockoutTriangles": 888,
+      "materials": [
+        "brass",
+        "cream",
+        "dark_leather",
+        "faction_cloth",
+        "gold",
+        "hair",
+        "ink",
+        "leather",
+        "linen",
+        "paper",
+        "skin",
+        "skin_light",
+        "teal",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        1.0998,
+        1.783,
+        0.4127
+      ]
+    },
+    {
+      "id": "house",
+      "label": "山乡民居",
+      "category": "建筑",
+      "model": "/atelier/models/house.glb",
+      "blockout": "/atelier/blockout/house.glb",
+      "triangles": 2448,
+      "blockoutTriangles": 172,
+      "materials": [
+        "brass",
+        "dark_leather",
+        "faction_cloth",
+        "gold",
+        "lantern",
+        "limestone",
+        "roof_shadow",
+        "slate",
+        "stone",
+        "tile",
+        "tile_glaze",
+        "timber",
+        "wall",
+        "whitewash",
+        "window",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        3.3244,
+        2.5549,
+        2.5496
+      ]
+    },
+    {
+      "id": "tree",
+      "label": "山脊青松",
+      "category": "植被",
+      "model": "/atelier/models/tree.glb",
+      "blockout": "/atelier/blockout/tree.glb",
+      "triangles": 400,
+      "blockoutTriangles": 264,
+      "materials": [
+        "pine",
+        "pine_mid",
+        "pine_tip",
+        "timber",
+        "wood"
+      ],
+      "size": [
+        1.9502,
+        3.2713,
+        2.0101
+      ]
+    },
+    {
+      "id": "bridge",
+      "label": "溪口木桥",
+      "category": "建筑",
+      "model": "/atelier/models/bridge.glb",
+      "blockout": "/atelier/blockout/bridge.glb",
+      "triangles": 1380,
+      "blockoutTriangles": 244,
+      "materials": [
+        "limestone",
+        "stone",
+        "timber",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        3.644,
+        1.15,
+        1.52
+      ]
+    },
+    {
+      "id": "rock",
+      "label": "溪畔石簇",
+      "category": "地貌",
+      "model": "/atelier/models/rock.glb",
+      "blockout": "/atelier/blockout/rock.glb",
+      "triangles": 400,
+      "blockoutTriangles": 192,
+      "materials": [
+        "limestone",
+        "moss",
+        "slate",
+        "stone"
+      ],
+      "size": [
+        1.6516,
+        0.927,
+        1.038
+      ]
+    },
+    {
+      "id": "watchtower",
+      "label": "巡山望楼",
+      "category": "建筑",
+      "model": "/atelier/models/watchtower.glb",
+      "blockout": "/atelier/blockout/watchtower.glb",
+      "triangles": 740,
+      "blockoutTriangles": 420,
+      "materials": [
+        "faction_cloth",
+        "stone",
+        "tile",
+        "tile_glaze",
+        "timber",
+        "wood",
+        "wood_light"
+      ],
+      "size": [
+        1.7748,
+        3.82,
+        1.6904
+      ]
+    }
+  ],
+  "nativeSource": "/atelier/source/field-kit.mixar"
+}
